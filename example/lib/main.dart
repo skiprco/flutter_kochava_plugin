@@ -53,6 +53,7 @@ class _MyAppState extends State<MyApp> {
           "age": 10,
           "happy": true,
         },
+        userId: "userID1",
       );
       await FlutterKochavaPlugin.sendEvent(event);
       print("_testCustomEvent success");
@@ -63,8 +64,8 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _testSearchEvent() async {
     try {
-      var event =
-          KochavaSearchEvent(uri: "https://test", results: "some results");
+      var event = KochavaSearchEvent(
+          uri: "https://test", results: "some results", userId: "userID1");
       await FlutterKochavaPlugin.sendEvent(event);
       print("_testSearchEvent success");
     } catch (e) {

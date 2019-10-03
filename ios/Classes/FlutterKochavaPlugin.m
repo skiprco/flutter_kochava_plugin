@@ -37,6 +37,7 @@
                 KochavaEvent *event = [KochavaEvent customEventWithEventNameString: nameString];
                 event.nameString = nameString;
                 event.infoDictionary = [arguments objectForKey:@"infoDictionary"];
+                event.userIdString = [arguments objectForKey:@"userIdString"];
                 [KochavaTracker.shared sendEvent:event];
                 result(@"success");
                 
@@ -44,6 +45,7 @@
                 KochavaEvent *event = [KochavaEvent eventWithEventTypeEnum: KochavaEventTypeEnumSearch];
                 event.uriString = [arguments objectForKey:@"uri"];
                 event.resultsString = [arguments objectForKey:@"results"];
+                event.userIdString = [arguments objectForKey:@"userIdString"];
                 result(@"success");
                 
             } else {
