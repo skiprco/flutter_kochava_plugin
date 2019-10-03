@@ -1,0 +1,29 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_kochava_plugin (0.0.1):
+    - Flutter
+    - KochavaTrackeriOS (= 3.11.3)
+  - KochavaTrackeriOS (3.11.3)
+
+DEPENDENCIES:
+  - Flutter (from `.symlinks/flutter/ios`)
+  - flutter_kochava_plugin (from `.symlinks/plugins/flutter_kochava_plugin/ios`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - KochavaTrackeriOS
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: ".symlinks/flutter/ios"
+  flutter_kochava_plugin:
+    :path: ".symlinks/plugins/flutter_kochava_plugin/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_kochava_plugin: b13ed51b27cc9bd39306643788b92fc85aa275e2
+  KochavaTrackeriOS: 66b13cf794b748f1a09ef4ce40f76c0c2a7e4540
+
+PODFILE CHECKSUM: 10ae9c18d12c9ffc2275c9a159a3b1e281990db0
+
+COCOAPODS: 1.7.2
