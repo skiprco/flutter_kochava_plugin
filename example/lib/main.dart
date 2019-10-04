@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _testConfigure() async {
-    String key = null;
+    String key;
     if (Platform.isIOS) {
       key = iosKey;
     } else if (Platform.isAndroid) {
