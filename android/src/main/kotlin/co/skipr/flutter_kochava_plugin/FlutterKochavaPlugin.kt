@@ -12,42 +12,42 @@ import com.kochava.base.Tracker.configure
 
 class FlutterKochavaPlugin: MethodCallHandler {
 
-  companion object {
-    @JvmStatic
-    fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "flutter_kochava_plugin")
-      channel.setMethodCallHandler(FlutterKochavaPlugin())
+    companion object {
+        @JvmStatic
+        fun registerWith(registrar: Registrar) {
+            val channel = MethodChannel(registrar.messenger(), "flutter_kochava_plugin")
+            channel.setMethodCallHandler(FlutterKochavaPlugin(registrar.context()))
 
+        }
     }
-  }
 
-
-  override fun onMethodCall(call: MethodCall, result: Result) {
-     if (call.method == "configure") {
-      var argument = call.argument<String>("data")!!
-      print(argument)
-//
-//
-//      configure(Configuration(context)
-//              .setAppGuid("_YOUR_APP_GUID_")
-//              .setLogLevel(Tracker.LOG_LEVEL_NONE)
-//      )
-//
-//
-//      configure(Configuration(getApplicationContext())
-//              .setAppGuid(argument)
-//              .setLogLevel(Tracker.LOG_LEVEL_NONE)
-//      );
-      result.success("success configure")
-    } else if (call.method == "sendEvent") {
-
-
-
-
-
-      result.success("success sendEvent")
-    } else {
-      result.notImplemented()
+    var context: Context
+    constructor(context: Context) {
+        this.context = context
     }
-  }
+
+
+    override fun onMethodCall(call: MethodCall, result: Result) {
+        if (call.method == "configure") {
+            var arguments = call.arguments as String
+            if (arguments == null) {
+                result.error("flutter_kochava_plugin", "Error", "incorrect arguments, should be String")
+                return
+            }
+            configure(Configuration(context)
+                    .setAppGuid(arguments)
+                    .setLogLevel(Tracker.LOG_LEVEL_NONE)
+            )
+            result.success("success")
+        } else if (call.method == "sendEvent") {
+
+
+
+
+
+            result.success("success")
+        } else {
+            result.notImplemented()
+        }
+    }
 }

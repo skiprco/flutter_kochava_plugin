@@ -19,21 +19,14 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    await _testConfigureAndroid();
+    String key = iosKey;
+    key = androidKey;
+    await _testConfigure(key);
     await _testCustomEvent();
     await _testSearchEvent();
   }
 
-  Future<void> _testConfigureAndroid() async {
-    try {
-      await FlutterKochavaPlugin.configure(key: androidKey);
-      print("configureWith success");
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  Future<void> _testConfigureIos() async {
+  Future<void> _testConfigure(String key) async {
     try {
       await FlutterKochavaPlugin.configure(key: iosKey);
       print("configureWith success");
