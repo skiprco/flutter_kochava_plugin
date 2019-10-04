@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_kochava_plugin/flutter_kochava_plugin.dart';
@@ -19,16 +21,24 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String key = iosKey;
-    key = androidKey;
-    await _testConfigure(key);
+    await _testConfigure();
     await _testCustomEvent();
     await _testSearchEvent();
   }
 
-  Future<void> _testConfigure(String key) async {
+  Future<void> _testConfigure() async {
+    String key = null;
+    if (Platform.isIOS) {
+      key = iosKey;
+    } else if (Platform.isAndroid) {
+      key = androidKey;
+    }
+    if (key == null) {
+      print("configureWith success");
+      return;
+    }
     try {
-      await FlutterKochavaPlugin.configure(key: iosKey);
+      await FlutterKochavaPlugin.configure(key: key);
       print("configureWith success");
     } catch (e) {
       print(e.toString());
@@ -38,7 +48,7 @@ class _MyAppState extends State<MyApp> {
   Future<void> _testCustomEvent() async {
     try {
       var event = KochavaCustomEvent(
-        nameString: "testEvent",
+        nameString: "testEvent ${Platform.isIOS ? "IOS" : "ANDROID"}",
         infoDictionary: {
           "custom_name": "test name",
           "age": 10,
